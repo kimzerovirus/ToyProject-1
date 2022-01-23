@@ -12,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /*
 *   swagger 설정 파일
+*   http://localhost:8888/swagger-ui/index.html
 * */
 
 @Configuration
@@ -27,7 +28,7 @@ public class SwaggerConfiguration {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
         docket.apiInfo(apiInfo.build());
 
-        ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage("com.jy.jobweb.controller"));
+        ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage("com.jy.jobweb"));
         apis.paths(PathSelectors.ant("/**"));
 
         return apis.build();

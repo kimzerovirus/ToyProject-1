@@ -19,6 +19,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
+//    경로가 말을 잘 안들음
+//    private final String apiBasePackage = "com.jy.jobweb.controller";
+
     @Bean
     public Docket docket(){
         ApiInfoBuilder apiInfo = new ApiInfoBuilder();
@@ -28,7 +31,8 @@ public class SwaggerConfiguration {
         Docket docket = new Docket(DocumentationType.SWAGGER_2);
         docket.apiInfo(apiInfo.build());
 
-        ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage("com.jy.jobweb.controller"));
+//        ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage(apiBasePackage));
+        ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.any());
         apis.paths(PathSelectors.ant("/**"));
 
         return apis.build();

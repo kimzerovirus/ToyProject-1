@@ -37,6 +37,13 @@ public class UserService {
 
 
     // 로그인
+    // table 에서 id와 pwd 조회해서 값 비교하기
+    public UserEntity signInUserByUserID(String id, String pwd){
+
+        // 암호화 전
+        return userRepository.findByIdAndPwd(id, pwd);
+
+    }
 
     // 로그아웃
 

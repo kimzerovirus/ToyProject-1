@@ -48,9 +48,20 @@ public class UserController {
 
     // 로그인
     @PostMapping("signin")
-    public String signIn(@RequestBody UserDTO dto){
+    public ResponseEntity<?> signIn(@RequestBody UserDTO dto){
 
-        return "";
+        UserEntity user = service.signInUserByUserID(dto.getId(), dto.getPwd());
+
+        // 로그인 정보가 없을 때
+        if(user == null){
+            ResponseDTO responseDTO = ResponseDTO.builder().error("로그인 실패.").build();
+            return ResponseEntity.badRequest().body(responseDTO);
+        }
+
+        // 로그인 성공시
+        UserDTO responseUserDTO = dto.builder().id(dto.getId()).pwd(dto.getPwd()).build();
+
+        return ResponseEntity.ok().body(responseUserDTO);
     }
 
     // 로그아웃

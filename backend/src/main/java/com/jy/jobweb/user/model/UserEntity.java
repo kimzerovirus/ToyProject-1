@@ -32,8 +32,10 @@ public class UserEntity {
     @Column(nullable = false)
     private String grade; //user_lv -> 기업관계자(c), 헤드헌터(h)
 
+    @Column(nullable = false)
+    private String email;
+
 //    private String nickname;
-//    private String email;
 //    private String email_cert;  // 이메일 인증 여부
 
 //

@@ -37,12 +37,13 @@ public class UserController {
                     .pwd(passwordEncoder.encode(dto.getPwd()))
                     .name(dto.getName())
                     .grade(dto.getGrade())
+                    .email(dto.getEmail())
                     .build();
 
             UserEntity registeredUser = service.create(user);
             UserDTO responseUserDTO = UserDTO.builder().id(registeredUser.getId())
                     .pwd(registeredUser.getPwd()).name(registeredUser.getName())
-                    .grade(registeredUser.getGrade()).build();
+                    .grade(registeredUser.getGrade()).email(registeredUser.getEmail()).build();
 
 
             return ResponseEntity.ok(responseUserDTO);
@@ -58,9 +59,10 @@ public class UserController {
     @PostMapping("signin")
     public ResponseEntity<?> signIn(@RequestBody UserDTO dto){
 
-        System.out.println("로그인");
+        System.out.println("로그인" + dto);
 
-        UserEntity user = service.signInUserByUserID(dto.getId(), dto.getPwd());
+        UserEntity user = service.signInUserByUserID(dto.getEmail(), dto.getPwd(), passwordEncoder);
+//        UserEntity user = service.signInUserByUserID(dto.getId(), dto.getPwd(), passwordEncoder);
 
         // 로그인 정보가 없을 때
         if(user == null){
@@ -73,7 +75,7 @@ public class UserController {
 
         // 로그인 성공시
 //        UserDTO responseUserDTO = dto.builder().id(dto.getId()).pwd(dto.getPwd()).build();
-        UserDTO responseUserDTO = dto.builder().id(dto.getId()).pwd(dto.getPwd()).token(dto.getToken()).build();
+        UserDTO responseUserDTO = dto.builder().id(dto.getId()).pwd(dto.getPwd()).token(token).build();
 
         return ResponseEntity.ok().body(responseUserDTO);
     }

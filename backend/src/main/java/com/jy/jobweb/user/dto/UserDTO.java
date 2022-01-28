@@ -18,9 +18,9 @@ public class UserDTO {
     private String name;
     // user_lv -> 기업관계자(c), 헤드헌터(h)
     private String grade;
+    private String email;
 
 //    private String nickname;
-//    private String email;
 //    private String email_cert;
 //
 //

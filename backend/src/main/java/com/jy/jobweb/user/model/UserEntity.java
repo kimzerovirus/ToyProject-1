@@ -16,6 +16,10 @@ import javax.persistence.*;
 //@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "nickname")})
 public class UserEntity {
 
+//    @Id
+//    private int seq;
+//    @Column(nullable = false)
+
     @Id
     private String id;
 

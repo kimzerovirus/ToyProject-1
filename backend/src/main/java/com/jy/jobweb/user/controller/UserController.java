@@ -5,6 +5,9 @@ import com.jy.jobweb.security.TokenProvider;
 import com.jy.jobweb.user.dto.UserDTO;
 import com.jy.jobweb.user.model.UserEntity;
 import com.jy.jobweb.user.service.UserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,24 +29,44 @@ public class UserController {
     }
 
     // 회원가입
+    @ApiOperation(value = "회원가입", notes = "회원가입")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "pwd", value = "비밀번호", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "email", value = "이메일", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "birthday", value = "생일", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "gender", value = "성별", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "phone", value = "휴대폰번호", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "del_yn", value = "삭제여부", required = true, dataType = "UserDTO", paramType = "query" )
+//    })
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@RequestBody UserDTO dto){
 
-        System.out.println("회원가입");
+        System.out.println("회원가입" + dto);
         try {
             // dto -> entity로
             UserEntity user = UserEntity.builder()
-                    .id(dto.getId())
+//                    .id(dto.getId())
                     .pwd(passwordEncoder.encode(dto.getPwd()))
                     .name(dto.getName())
-                    .grade(dto.getGrade())
                     .email(dto.getEmail())
+                    .grade(dto.getGrade())
+                    .birthday(dto.getBirthday())
+                    .gender(dto.getGender())
+                    .phone(dto.getPhone())
+                    .del_yn(dto.getDel_yn())
                     .build();
 
             UserEntity registeredUser = service.create(user);
-            UserDTO responseUserDTO = UserDTO.builder().id(registeredUser.getId())
+            UserDTO responseUserDTO = UserDTO.builder()
+//                    .id(registeredUser.getId())
                     .pwd(registeredUser.getPwd()).name(registeredUser.getName())
-                    .grade(registeredUser.getGrade()).email(registeredUser.getEmail()).build();
+                    .grade(registeredUser.getGrade()).email(registeredUser.getEmail())
+                    .birthday(registeredUser.getBirthday())
+                    .gender(registeredUser.getGender())
+                    .phone(registeredUser.getPhone())
+                    .del_yn(registeredUser.getDel_yn())
+                    .build();
 
 
             return ResponseEntity.ok(responseUserDTO);

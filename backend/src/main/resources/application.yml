@@ -14,4 +14,9 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL=DEBUG:
 # swagger 설정

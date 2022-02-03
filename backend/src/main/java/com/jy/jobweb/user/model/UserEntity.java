@@ -21,7 +21,8 @@ public class UserEntity {
 //    @Column(nullable = false)
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // id를 자동으로 증가시켜주는 것 oracle 에서 sequence
+    private int id;
 
     @Column(nullable = false)
     private String pwd;

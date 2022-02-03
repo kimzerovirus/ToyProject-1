@@ -29,11 +29,11 @@ public class UserController {
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@RequestBody UserDTO dto){
 
-        System.out.println("회원가입");
+        System.out.println("회원가입" + dto);
         try {
             // dto -> entity로
             UserEntity user = UserEntity.builder()
-                    .id(dto.getId())
+//                    .id(dto.getId())
                     .pwd(passwordEncoder.encode(dto.getPwd()))
                     .name(dto.getName())
                     .grade(dto.getGrade())
@@ -41,7 +41,8 @@ public class UserController {
                     .build();
 
             UserEntity registeredUser = service.create(user);
-            UserDTO responseUserDTO = UserDTO.builder().id(registeredUser.getId())
+            UserDTO responseUserDTO = UserDTO.builder()
+//                    .id(registeredUser.getId())
                     .pwd(registeredUser.getPwd()).name(registeredUser.getName())
                     .grade(registeredUser.getGrade()).email(registeredUser.getEmail()).build();
 

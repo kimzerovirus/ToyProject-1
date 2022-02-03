@@ -13,7 +13,7 @@ public class UserDTO {
 
 //    private int seq;
     private String token;
-    private String id;
+    private int id;
     private String pwd;
     private String name;
     // user_lv -> 기업관계자(c), 헤드헌터(h)

@@ -19,16 +19,18 @@ public class UserService {
 
     // 회원가입
     public UserEntity create(UserEntity entity) {
+        System.out.println("Service :: " + entity);
         // 입력된 정보가 없는 경우
-        if (entity == null || entity.getId() == null) {
+        if (entity == null || entity.getEmail() == null) {
+//        if (entity == null || entity.getId() == null) {
             throw new RuntimeException("Invalid arguments");
         }
 
         // 먼저 가입한 id가 있을 경우
-        final String id = entity.getId();
-        if (userRepository.existsById(id)) {
-            log.warn("ID already exist {} ", id);
-            throw new RuntimeException("ID already exist");
+        final String email = entity.getEmail();
+        if (userRepository.existsByEmail(email)) {
+            log.warn("ID already exist {} ", email);
+            throw new RuntimeException("Email already exist");
         }
 
         // 중복체크

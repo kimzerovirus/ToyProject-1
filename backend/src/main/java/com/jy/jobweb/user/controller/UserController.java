@@ -5,6 +5,9 @@ import com.jy.jobweb.security.TokenProvider;
 import com.jy.jobweb.user.dto.UserDTO;
 import com.jy.jobweb.user.model.UserEntity;
 import com.jy.jobweb.user.service.UserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +29,16 @@ public class UserController {
     }
 
     // 회원가입
+    @ApiOperation(value = "회원가입", notes = "회원가입")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "pwd", value = "비밀번호", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "email", value = "이메일", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "birthday", value = "생일", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "gender", value = "성별", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "phone", value = "휴대폰번호", required = true, dataType = "UserDTO", paramType = "query" ),
+//            @ApiImplicitParam(name = "del_yn", value = "삭제여부", required = true, dataType = "UserDTO", paramType = "query" )
+//    })
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@RequestBody UserDTO dto){
 

@@ -34,6 +34,7 @@ public class UserService {
         }
 
         // 중복체크
+        System.out.println("여기까진?");
 
         return userRepository.save(entity);
     }

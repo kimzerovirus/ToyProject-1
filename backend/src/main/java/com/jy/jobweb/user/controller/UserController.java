@@ -36,15 +36,24 @@ public class UserController {
 //                    .id(dto.getId())
                     .pwd(passwordEncoder.encode(dto.getPwd()))
                     .name(dto.getName())
-                    .grade(dto.getGrade())
                     .email(dto.getEmail())
+                    .grade(dto.getGrade())
+                    .birthday(dto.getBirthday())
+                    .gender(dto.getGender())
+                    .phone(dto.getPhone())
+                    .del_yn(dto.getDel_yn())
                     .build();
 
             UserEntity registeredUser = service.create(user);
             UserDTO responseUserDTO = UserDTO.builder()
 //                    .id(registeredUser.getId())
                     .pwd(registeredUser.getPwd()).name(registeredUser.getName())
-                    .grade(registeredUser.getGrade()).email(registeredUser.getEmail()).build();
+                    .grade(registeredUser.getGrade()).email(registeredUser.getEmail())
+                    .birthday(registeredUser.getBirthday())
+                    .gender(registeredUser.getGender())
+                    .phone(registeredUser.getPhone())
+                    .del_yn(registeredUser.getDel_yn())
+                    .build();
 
 
             return ResponseEntity.ok(responseUserDTO);

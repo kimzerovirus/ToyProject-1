@@ -1,5 +1,6 @@
 package com.jy.jobweb.project.dto;
 
+import com.jy.jobweb.project.model.ProjectEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,4 +27,8 @@ public class ProjectDTO {
     private String candidate_status;
     private String bid_status;
 
+//    public ProjectDTO(ProjectEntity projectEntity) {
+//        this.company_name = projectEntity.getCompany_name();
+//        this
+//    }
 }

@@ -79,6 +79,7 @@ public class UserController {
     }
 
     // 로그인
+    @ApiOperation(value = "로그인", notes = "로그인")
     @PostMapping("signin")
     public ResponseEntity<?> signIn(@RequestBody UserDTO dto){
 

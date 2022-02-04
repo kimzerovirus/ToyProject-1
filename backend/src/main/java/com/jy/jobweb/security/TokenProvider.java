@@ -29,7 +29,7 @@ public class TokenProvider {
                 // header 에 들어갈 내용 및 서명을 하기 위한 key
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 // payload 에 들어갈 내용
-                .setSubject(userEntity.getId()) // sub
+                .setSubject(userEntity.getEmail()) // sub
                 .setIssuer("jobweb")    // iss
                 .setIssuedAt(new Date())    // iat
                 .setExpiration(expireDate) // exp
